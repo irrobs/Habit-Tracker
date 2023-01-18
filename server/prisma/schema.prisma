@@ -1,0 +1,25 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// O prisma é um package de ORM,serve para criação de bancos de dados através do JS.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+//criação de tabela
+model Habit {
+  // criação dos campos da tabela
+  id String @id @default(uuid()) // @id está dizendo que o id é a primary key, e @default(uuid()) faz com que o id tenha a forma de um uuid
+  title String 
+  created_at DateTime
+
+  @@map("habits")
+}
+
+// comando npx prisma migrate dev irá fazer a criação dos arquivos dev.db e dev.db-journal, e sempre que rodar o comando novamente, irá atualizar com as mudanças
