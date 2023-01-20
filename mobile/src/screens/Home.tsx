@@ -2,6 +2,7 @@ import { View, Text, ScrollView} from "react-native";
 import { HabitDay, daySize } from "../components/HabitDay";
 import { Header } from "../components/Header";
 import { generateDatesFromYearBeginning } from '../utils/generate-date-from-year-beginning'
+import { useNavigation } from '@react-navigation/native'
 
 const weekDays = ['D','S', 'T', 'Q', 'Q', 'S', 'S'];
 const datesFromYearBeginning = generateDatesFromYearBeginning();
@@ -10,6 +11,8 @@ const amountOfDaysToFill = minimumSummaryDatesSizes - datesFromYearBeginning.len
 
 //É necessário tipar o className para poder começar a usar o NativeWind. Isso é feito pelo arquivo app.d.ts
 export function Home() {
+
+    const { navigate } = useNavigation();
     return (
         <View className="flex-1 bg-background px-8 pt-16">
             <Header />
@@ -37,6 +40,7 @@ export function Home() {
                         datesFromYearBeginning.map(date => (
                             <HabitDay
                                key={date.toISOString()}
+                               onPress={() => navigate('habit', {date: date.toISOString()})}
                             />
                         ))
                     }
