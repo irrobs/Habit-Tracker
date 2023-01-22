@@ -51,16 +51,17 @@ export function SummaryTable() {
         </div>
   
         <div className="grid grid-rows-7 grid-flow-col gap-3">
-          {summaryDates.map(date => {
+          {summary.length > 0 && summaryDates.map(date => {
             const dayInSummary = summary.find(day => {
               return dayjs(date).isSame(day.date, 'day')
             })// procurar a data dentro do array de informações do banco de dados
+            
             return (
               <HabitDay 
                 key={date.toString()}
                 date={date}
                 amount={dayInSummary?.amount} // se tiver a data no banco, pegar a informação amount
-                completed={dayInSummary?.completed} // se tiver a data no banco, pegar a informação completed
+                defaultCompleted={dayInSummary?.completed} // se tiver a data no banco, pegar a informação completed
               />
             )
           })}

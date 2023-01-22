@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        backgorund: '#09090A'
+        background: '#09090A'
       },
 
       gridTemplateRows: {
